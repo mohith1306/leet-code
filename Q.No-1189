@@ -1,0 +1,12 @@
+from collections import Counter
+class Solution:
+    def maxNumberOfBalloons(self, text: str) -> int:
+        char_count = Counter(text)
+        b_count = char_count['b']
+        a_count = char_count['a']
+        l_count = char_count['l'] 
+        o_count = char_count['o'] 
+        n_count = char_count['n']
+    
+        return min(b_count, a_count, l_count//2, o_count//2, n_count)
+        
