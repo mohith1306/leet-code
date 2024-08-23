@@ -1,0 +1,20 @@
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        new_lst=[]
+        if target in nums:
+            for i in range(0,len(nums)):
+                if target==nums[i]:
+                    new_lst.append(i)
+                    break
+                else:
+                    i+=1
+            for j in range(len(nums)-1,-1,-1):
+                if target==nums[j]:
+                    new_lst.append(j)
+                    break
+                else:
+                    j+=1
+            return (new_lst)
+        else:
+            return [-1,-1]
+        
