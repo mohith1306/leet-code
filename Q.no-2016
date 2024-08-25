@@ -1,0 +1,13 @@
+class Solution {
+    public int maximumDifference(int[] nums) {
+        int diff = -1;
+        int leftmin = nums[0];
+        for(int i=0;i<nums.length;i++){
+            if(leftmin < nums[i]){
+                diff = Math.max(diff,nums[i]-leftmin);
+            }
+            leftmin = Math.min(leftmin,nums[i]);
+        }
+        return diff;
+    }
+}
