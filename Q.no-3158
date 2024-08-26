@@ -1,0 +1,17 @@
+from collections import Counter
+class Solution:
+    def duplicateNumbersXOR(self, nums: List[int]) -> int:
+            c = Counter(nums)
+            l = []
+            for key,value in c.items():
+                if value == 2:
+                    l.append(key)
+            if not l:
+                return 0
+            if len(l) == 1:
+                return l[0]
+            else:
+                ans = 0
+                for i in range(len(l)):
+                        ans = ans ^ l[i]
+                return ans
