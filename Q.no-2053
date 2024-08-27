@@ -1,0 +1,14 @@
+from collections import Counter
+class Solution:
+    def kthDistinct(self, arr: List[str], k: int) -> str:
+        c = Counter(arr)
+        l = []
+        for key,value in c.items():
+            if value == 1:
+                l.append(key)
+        if len(l) < k:
+            return ""
+        elif len(l) == 1:
+            return l[0]
+        else:
+            return l[k-1]
