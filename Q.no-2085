@@ -1,0 +1,20 @@
+class Solution {
+    public int countWords(String[] words1, String[] words2) {
+        HashMap <String,Integer> hm = new HashMap<>();
+        for(int i=0;i<words1.length;i++){
+            hm.put(words1[i],hm.getOrDefault(words1[i],0)+1);
+        }
+        HashMap <String,Integer> hm1 = new HashMap<>();
+        for(int i=0;i<words2.length;i++){
+            hm1.put(words2[i],hm1.getOrDefault(words2[i],0)+1);
+        }
+        int count = 0;
+        for(String i: hm.keySet()){
+            if(hm1.containsKey(i) && hm.get(i) == 1 && hm1.get(i) == 1){
+                    count++;
+            }
+        }
+        return count;
+        
+    }
+}
