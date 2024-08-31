@@ -1,0 +1,22 @@
+
+class Solution {
+    public List<String> buildArray(int[] target, int n) {
+        List<String> operations = new ArrayList<>();
+        int i = 0;
+
+        for (int j = 1; j <= n; j++) {
+            if (i >= target.length) {
+                break;
+            }
+            if (target[i] == j) {
+                i++;
+                operations.add("Push");
+            } else {
+                operations.add("Push");
+                operations.add("Pop");
+            }
+        }
+
+        return operations;
+    }
+}
