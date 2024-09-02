@@ -1,0 +1,18 @@
+import java.util.Arrays;
+class Solution {
+    public double average(int[] salary) {
+        double sum=0;
+        Arrays.sort(salary);
+        int size = salary.length - 2;
+        int[] newarr = new int[size];
+        int j=0;
+        for(int i = 1;i<salary.length-1;i++){
+            newarr[j++]=salary[i];
+        }
+        for(int i=0;i<newarr.length;i++){
+            sum+=newarr[i];
+        }
+        return sum/newarr.length;
+
+    }
+}
