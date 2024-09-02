@@ -1,0 +1,18 @@
+class Solution {
+    public int chalkReplacer(int[] chalk, int k) {
+        long sum = 0;
+        for (int i = 0; i < chalk.length; i++) {
+            sum += chalk[i];
+        }
+        k %= sum;
+
+        for (int j = 0; j < chalk.length; j++) {
+            if (chalk[j] > k) {
+                return j;
+            }
+            k -= chalk[j];
+        }
+
+        return -1;
+    }
+}
