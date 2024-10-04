@@ -1,0 +1,23 @@
+class Solution {
+    public long dividePlayers(int[] skill) {
+        int n = skill.length;
+        if(n==2){
+            return skill[0] * skill[1];
+        }
+        int i=1;
+        int j=n-2;
+        Arrays.sort(skill);
+        long target = skill[0] + skill[n-1];
+        long sum = skill[0] * skill[n-1];
+        while(i<j){
+            int current = skill[i]+skill[j];
+            if(current!=target){
+                return -1;
+            }
+            sum+=(skill[i] * skill[j]);
+            i++;
+            j--;
+        }
+        return sum;
+    }
+}
