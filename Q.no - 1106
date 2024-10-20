@@ -1,0 +1,27 @@
+class Solution:
+    def parseBoolExpr(self, expression: str) -> bool:
+        stack = []
+        def eval(op, nums):
+            if op == '!':
+                return not nums[0]
+            elif op == '&':
+                return all(nums)
+            elif op == '|':
+                return any(nums)
+        
+        for char in expression:
+            if char == '!' or char == '&' or char == '|' or char == '(':
+                stack.append(char)
+            elif char == 't':
+                stack.append(True)
+            elif char == 'f':
+                stack.append(False)
+            elif char == ')':
+                nums = []
+                while stack and stack[-1] != '(':
+                    nums.append(stack.pop())
+                nums.reverse()
+                stack.pop()
+                op = stack.pop()
+                stack.append(eval(op, nums))
+        return stack.pop()
