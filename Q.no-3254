@@ -1,0 +1,33 @@
+class Solution {
+    public int[] resultsArray(int[] nums, int k) {
+        if(k == 1){
+            return nums;
+        }
+        if(nums.length == 1){
+            return nums;
+        }
+        int[] ans = new int[nums.length-k+1];
+        int j = k-1;
+        int i = 0;
+        int ind = 0; 
+        while(j<nums.length){
+            int l = i+1;
+            int maxi = -1;
+            while(l<=j){
+                if(nums[l] - nums[l-1] == 1){
+                    maxi = Math.max(nums[l],nums[l-1]);
+                    l++;
+                }
+                else{
+                    maxi = -1;
+                    break;
+                }
+            }
+            ans[ind] = maxi;
+            ind++;
+            i++;
+            j++;
+        }
+        return ans;
+    }
+}
