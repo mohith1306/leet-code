@@ -1,12 +1,15 @@
-from collections import Counter
-class Solution:
-    def maxNumberOfBalloons(self, text: str) -> int:
-        char_count = Counter(text)
-        b_count = char_count['b']
-        a_count = char_count['a']
-        l_count = char_count['l'] 
-        o_count = char_count['o'] 
-        n_count = char_count['n']
-    
-        return min(b_count, a_count, l_count//2, o_count//2, n_count)
-        
+class Solution {
+    public int maxNumberOfBalloons(String text) {
+        HashMap<Character, Integer> charCount = new HashMap<>();
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            charCount.put(c, charCount.getOrDefault(c, 0) + 1);
+        }
+        int bCount = charCount.getOrDefault('b', 0);
+        int aCount = charCount.getOrDefault('a', 0);
+        int lCount = charCount.getOrDefault('l', 0) / 2;
+        int oCount = charCount.getOrDefault('o', 0) / 2;
+        int nCount = charCount.getOrDefault('n', 0);
+        return Math.min(bCount, Math.min(aCount, Math.min(lCount, Math.min(oCount, nCount))));
+    }
+}
