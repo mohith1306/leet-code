@@ -1,20 +1,43 @@
-class Solution:
-    def searchRange(self, nums: List[int], target: int) -> List[int]:
-        new_lst=[]
-        if target in nums:
-            for i in range(0,len(nums)):
-                if target==nums[i]:
-                    new_lst.append(i)
-                    break
-                else:
-                    i+=1
-            for j in range(len(nums)-1,-1,-1):
-                if target==nums[j]:
-                    new_lst.append(j)
-                    break
-                else:
-                    j+=1
-            return (new_lst)
-        else:
-            return [-1,-1]
-        
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int[] ans = new int[2];
+        int low= 0 ;
+        int high = nums.length - 1;
+        int first = -1;
+        int last = -1;
+        while(low <= high){
+            int mid = (low + high ) / 2;
+            if(nums[mid] == target){
+                first = mid;
+                high = mid-1;
+            }
+            else if(nums[mid] < target){
+                low = mid + 1;
+            }
+
+            else{
+                high = mid - 1;
+            }
+        }
+
+        low = 0;
+        high = nums.length - 1;
+        while(low <= high){
+            int mid = (low + high ) / 2;
+            if(nums[mid] == target){
+                last = mid;
+                low = mid + 1;
+            }
+            else if(nums[mid] < target){
+                low = mid + 1;
+            }
+            else{
+                high = mid - 1;
+            }
+        }
+
+        ans[0] = first;
+        ans[1] = last;
+        return ans;
+    }
+}
