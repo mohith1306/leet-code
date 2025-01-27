@@ -1,0 +1,36 @@
+class Solution {
+    public int minFlips(int a, int b, int c) {
+        StringBuilder binaryA = new StringBuilder();
+        StringBuilder binaryB = new StringBuilder();
+        StringBuilder binaryC = new StringBuilder();
+        while (a > 0) {
+            binaryA.insert(0, a % 2); 
+            a /= 2;
+        }
+        while (b > 0) {
+            binaryB.insert(0, b % 2);
+            b /= 2;
+        }
+        while (c > 0) {
+            binaryC.insert(0, c % 2);
+            c /= 2;
+        }
+        int maxLength = Math.max(binaryA.length(), Math.max(binaryB.length(), binaryC.length()));
+        while (binaryA.length() < maxLength) binaryA.insert(0, '0');
+        while (binaryB.length() < maxLength) binaryB.insert(0, '0');
+        while (binaryC.length() < maxLength) binaryC.insert(0, '0');
+        int flips = 0;
+        for (int i = 0; i < maxLength; i++) {
+            char bitA = binaryA.charAt(i);
+            char bitB = binaryB.charAt(i);
+            char bitC = binaryC.charAt(i);
+            if (bitC == '0') {
+                if (bitA == '1') flips++;
+                if (bitB == '1') flips++;
+            } else {
+                if (bitA == '0' && bitB == '0') flips++;
+            }
+        }
+        return flips;
+    }
+}
