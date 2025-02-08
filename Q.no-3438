@@ -1,0 +1,20 @@
+class Solution {
+    public String findValidPair(String s) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            int num = s.charAt(i) - '0';
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length() - 1; i++) {
+            int first = s.charAt(i) - '0';
+            int second = s.charAt(i + 1) - '0';
+            if (first != second && map.get(first) == first && map.get(second) == second) {
+                sb.append(s.charAt(i)).append(s.charAt(i + 1)); 
+                break;
+            }
+        }   
+        return sb.toString();
+    }
+}
