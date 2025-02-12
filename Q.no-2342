@@ -1,0 +1,46 @@
+class Solution {
+    public int digitsum(int number){
+        int ans = 0;
+        while(number > 0){
+            int rem = number % 10;
+            ans += rem;
+            number = number / 10;
+        }
+        return ans;
+    }
+    public int maximumSum(int[] nums) {
+        HashMap<Integer,Integer> minMap = new HashMap<>();
+        HashMap<Integer,Integer> maxMap = new HashMap<>();
+        int sum = -1;
+        for(int digit: nums){
+            int digitSum = digitsum(digit);
+            if(!minMap.containsKey(digitSum)){
+                minMap.put(digitSum,digit);
+            }
+            else if(minMap.containsKey(digitSum) && !maxMap.containsKey(digitSum)){
+                if(minMap.get(digitSum) < digit){
+                    maxMap.put(digitSum,digit);
+                }
+                else{
+                    int key = minMap.get(digitSum);
+                    minMap.put(digitSum,digit);
+                    maxMap.put(digitSum,key);
+                }
+                sum = Math.max(sum,minMap.get(digitSum) + maxMap.get(digitSum));
+            }
+            else{
+                int key1 = minMap.get(digitSum);
+                int key2 = maxMap.get(digitSum);
+                if(key2 < digit){
+                    minMap.put(digitSum,key2);
+                    maxMap.put(digitSum,digit);
+                }
+                else if(key2 > digit && key1 < digit){
+                    minMap.put(digitSum,digit);
+                }
+                sum = Math.max(sum,minMap.get(digitSum) + maxMap.get(digitSum));
+            }
+        }
+        return sum;
+    }
+}
