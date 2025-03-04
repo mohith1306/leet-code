@@ -1,0 +1,47 @@
+class Solution {
+    public int maxEle(int[] weights){
+        int maxElement = Integer.MIN_VALUE;
+        for(int digit:weights){
+            if(maxElement < digit){
+                maxElement = digit;
+            }
+        }
+        return maxElement;
+    } 
+    public int totalSum(int[] weights){
+        int sum = 0;
+        for(int digit:weights){
+            sum+=digit;
+        }
+        return sum;
+    }
+    public int totalDays(int[] weights,int mid){
+        int sum = 0 ;
+        int newDay = 1;
+        for(int weight:weights){
+            if(sum+weight > mid){
+                newDay++;
+                sum = 0;
+            }
+            sum+=weight;
+        }
+        return newDay;
+    }
+    public int shipWithinDays(int[] weights, int days) {
+        int low = maxEle(weights);
+        int high = totalSum(weights);
+        int result = high;
+        while(low <= high){
+            int mid = (low + high) /2;
+            int newDays = totalDays(weights,mid);
+            if(newDays > days){
+                low = mid+1;
+            }
+            else{
+                result = mid;
+                high = mid-1;
+            }
+        }
+        return low;
+    }
+}
