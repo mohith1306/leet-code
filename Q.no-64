@@ -1,0 +1,23 @@
+class Solution {
+    public int dp(int i, int j, int[][] grid, int[][] arr) {
+        if (i == 0 && j == 0) return grid[0][0];
+        if (i < 0 || j < 0) return (int)Math.pow(10,9);
+        if (arr[i][j] != -1) return arr[i][j];
+
+        int up = grid[i][j] + dp(i - 1, j, grid, arr);
+        int left = grid[i][j] + dp(i, j - 1, grid, arr);
+
+        return arr[i][j] = Math.min(up, left);
+    }
+
+    public int minPathSum(int[][] grid) {
+        int n = grid.length;
+        int m = grid[0].length;
+        int[][] arr = new int[n][m];
+        for (int[] rows : arr) {
+            Arrays.fill(rows, -1);
+        }
+
+        return dp(n - 1, m - 1, grid, arr);
+    }
+}
