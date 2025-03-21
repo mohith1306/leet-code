@@ -1,5 +1,4 @@
 class Solution {
-
     public boolean dp(int[] nums,int sum,int index,int[][] arr){
         if(sum == 0) return true;
         if(index == 0) return nums[index] == sum;
